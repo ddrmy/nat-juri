@@ -1,6 +1,7 @@
 'use client'
 import { useGetLegisAll } from '@/api/legis';
 import { legisItem } from '@/types/legis';
+import { executePythonScript } from '@/utils/axios'; // Certifique-se de importar corretamente o caminho para o seu arquivo axios
 import { useEffect, useState } from 'react';
 
 
@@ -8,6 +9,16 @@ const tableHead = ["Titulo", "Descrição", "Ano"]
 
 
 function Legis() {
+
+  const handleExecutePythonScript = async () => {
+    try {
+      await executePythonScript();
+      // Adicione qualquer lógica adicional após a execução do script Python, se necessário
+    } catch (error) {
+      console.error('Erro ao executar o script Python:', error);
+    }
+  };
+
   const [legisData, setLegisData] = useState<legisItem[]>([]);
   const {legis} = useGetLegisAll();
 
@@ -26,6 +37,7 @@ function Legis() {
 
     <div>
       <h1>Legislação:</h1>
+      <button onClick={handleExecutePythonScript}>Executar Script Python</button>
       <table>
         <thead>
           <tr>{tableHead.map((head) => (
