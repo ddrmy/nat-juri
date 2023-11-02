@@ -31,8 +31,6 @@ function Legis() {
   ,
   [legis]
   )
-
-
   return (
 
     <div>
