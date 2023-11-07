@@ -10,14 +10,16 @@ const tableHead = ["Titulo", "Descrição", "Ano"]
 
 function Legis() {
 
-  const handleExecutePythonScript = async () => {
-    try {
-      await executePythonScript();
-      // Adicione qualquer lógica adicional após a execução do script Python, se necessário
-    } catch (error) {
-      console.error('Erro ao executar o script Python:', error);
-    }
-  };
+  const [url] = useState('http://www.planalto.gov.br/ccivil_03/Leis/2002/L10406.htm'); // Estado para armazenar a URL
+
+const handleExecutePythonScript = async () => {
+  try {
+    await executePythonScript(url); // Envie a URL como parâmetro
+    // Adicione qualquer lógica adicional após a execução do script Python, se necessário
+  } catch (error) {
+    console.error('Erro ao executar o script Python:', error);
+  }
+};
 
   const [legisData, setLegisData] = useState<legisItem[]>([]);
   const {legis} = useGetLegisAll();
