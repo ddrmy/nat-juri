@@ -1,3 +1,4 @@
+//src/pages/legis.tsx
 'use client'
 import { useGetLegisAll } from '@/api/legis';
 import { legisItem } from '@/types/legis';
@@ -20,6 +21,9 @@ function Legis() {
   ,
   [legis]
   )
+
+
+  console.log(legisData);
 
 
   return (

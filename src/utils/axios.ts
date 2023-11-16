@@ -1,3 +1,4 @@
+//src/utils/axios.ts
 import axios, { AxiosRequestConfig } from 'axios';
 
 const api = axios.create({
@@ -18,6 +19,15 @@ export const executePythonScript = async () => {
   }
 };
 
+export const executePythonCodigo = async () => {
+  try {
+    const response = await api.get('/run-python-codigo'); // Use o cliente Axios "api"
+    console.log(response.data); // Deve imprimir "Script Python executado com sucesso"
+  } catch (error) {
+    console.error('Erro na chamada para o servidor:', error);
+  }
+};
+
 // Obtenha o GET usando o fetcher - obter requisições do Axios
 export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
   const [url, config] = Array.isArray(args) ? args : [args];
@@ -31,6 +41,7 @@ const version = '/v1';
 export const endpoints = {
   legis: {
     getAll: `${version}/get/legis`,
+    getDate: `${version}/get/legis/date`,
     create: `${version}/create/legis`,
   },
 };
