@@ -1,8 +1,8 @@
-// src/pages/codigos/codigo-civil/codigo-civil.tsx
+// src/pages/codigos/codigo-civil/CodigoCivil.tsx
 'use client';
 import { useGetLegisAll } from '@/api/legis';
 import { legisItem } from '@/types/legis';
-import { executePythonCodigo, executePythonScript } from '@/utils/axios';
+import { executeCodigoPenal } from '@/utils/axios';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const CodigoPenal: React.FC = () => {
@@ -98,8 +98,28 @@ const CodigoPenal: React.FC = () => {
 
   useEffect(() => {
     if (legis && legis.length > 0) {
-      const specificLegis = legis.find((item) => item.titulo === 'Teste de request');
-      setLegisData(specificLegis ? [specificLegis] : []);
+      // Adicione logs para depuração
+      console.log('Legislação completa:', legis);
+  
+      // Filtra legislações com base no título desejado
+      const filteredLegis = legis.filter(item => item.titulo === 'codigo-penal');
+  
+      // Adicione logs para depuração
+      console.log('Legislação filtrada por título:', filteredLegis);
+  
+      // Obtém o último item (o mais recente) do array filtrado
+      const latestLegis = filteredLegis.pop();
+  
+      // Adicione logs para depuração
+      console.log('Item mais recente:', latestLegis);
+  
+      // Verifica se o último item possui o título desejado
+      const specificLegis = latestLegis ? [latestLegis] : null;
+  
+      // Adicione logs para depuração
+      console.log('Legislação específica:', specificLegis);
+  
+      setLegisData(specificLegis || []);
     }
   }, [legis]);
 
@@ -129,18 +149,10 @@ const CodigoPenal: React.FC = () => {
     };
   }, [handleKeyDown]);
 
-  const handleExecutePythonScript = async () => {
-    try {
-      await executePythonScript();
-      setLegisData(legis);
-    } catch (error) {
-      console.error('Erro ao executar o script Python:', error);
-    }
-  };
 
   const handleExecutePythonCodigo = async () => {
     try {
-      await executePythonCodigo();
+      await executeCodigoPenal();
       setLegisData(legis);
     } catch (error) {
       console.error('Erro ao executar o script Python:', error);
@@ -148,14 +160,18 @@ const CodigoPenal: React.FC = () => {
   };
 
   if (!legisData.length) {
-    return <p>Nenhuma legislação encontrada. deu certo</p>;
+    return (
+    <>
+    <p>Nenhuma legislação encontrada. deu certo</p>
+    <button onClick={handleExecutePythonCodigo}>Buscar codigos mais recentes</button>
+    </>
+    )
   }
 
   return (
     <div ref={textContainerRef}>
       <h1>Legislação:</h1>
-      <button onClick={handleExecutePythonScript}>Executar Script Python</button>
-      <button onClick={handleExecutePythonCodigo}>Executar Script Codigo</button>
+      <button onClick={handleExecutePythonCodigo}>Buscar codigos mais recentes</button>
       <div dangerouslySetInnerHTML={{ __html: legisData[0].descricao }} />
     </div>
   );
