@@ -19,6 +19,16 @@ export const executePythonScript = async () => {
   }
 };
 
+export const executeCodigoCivil = async () => {
+  try {
+    const response = await api.get('/run-codigo-civil'); // Use o cliente Axios "api"
+    console.log(response.data); // Deve imprimir "Script Python executado com sucesso"
+  } catch (error) {
+    console.error('Erro na chamada para o servidor:', error);
+  }
+};
+
+
 export const executePythonCodigo = async () => {
   try {
     const response = await api.get('/run-python-codigo'); // Use o cliente Axios "api"
