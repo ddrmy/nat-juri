@@ -1,4 +1,4 @@
-// src/app/MenuLeis.tsx
+// src/pages/MenuLeis.tsx
 import Link from 'next/link';
 import React from 'react';
 
@@ -8,13 +8,13 @@ const MenuLeis: React.FC = () => {
       <h1>Menu Principal de Leis</h1>
       <ul>
         <li>
-          <Link href="/codigos/MenuCodigos">
-            Menu de Códigos
+          <Link href="/codigos/CodigosMenu">
+            <a>Menu de Códigos</a>
           </Link>
         </li>
         <li>
-          <Link href="/estatutos/MenuEstatutos">
-            Menu de Estatutos
+          <Link href="/estatutos/EstatutosMenu">
+            <a>Menu de Estatutos</a>
           </Link>
         </li>
       </ul>
