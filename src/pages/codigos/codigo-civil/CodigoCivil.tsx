@@ -109,7 +109,7 @@ const CodigoCivil: React.FC = () => {
   
       // Obtém o último item (o mais recente) do array filtrado
       const latestLegis = filteredLegis.pop();
-  
+      
       // Adicione logs para depuração
       console.log('Item mais recente:', latestLegis);
   
