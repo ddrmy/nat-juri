@@ -65,6 +65,12 @@ const CodigoProcessoPenal: React.FC = () => {
   }, [readText, textsRef, speakingRef]);
 
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'v' || event.key === 'V') {
+      // Voltar uma página no histórico do navegador
+      window.location.href = '/.'
+    }
+
+
     if (event.key === 'ArrowRight' && currentTextIndexRef.current < textsRef.current.length - 1) {
       window.speechSynthesis.cancel();
       currentTextIndexRef.current++;
