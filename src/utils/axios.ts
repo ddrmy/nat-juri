@@ -10,6 +10,14 @@ api.interceptors.response.use(
   (error) => Promise.reject(error.response && error.response.data) || 'Erro de conexão com o servidor'
 );
 
+const version = '/v1';
+export const endpoints = {
+  legis: {
+    getAll: `${version}/get/legis`,
+    getDate: `${version}/get/legis/date`,
+    create: `${version}/create/legis`,
+  },
+};
 
 export const executePythonScript = async () => {
   try {
@@ -155,11 +163,3 @@ export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
 };
 
 
-const version = '/v1';
-export const endpoints = {
-  legis: {
-    getAll: `${version}/get/legis`,
-    getDate: `${version}/get/legis/date`,
-    create: `${version}/create/legis`,
-  },
-};

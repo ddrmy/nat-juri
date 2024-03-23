@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // src/pages/estatutos/EstatutosMenu.tsx
 import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -10,7 +11,6 @@ const EstatutosMenu: React.FC = () => {
     'Estatuto da OAB',
     'Estatuto da Pessoa com Deficiência',
     'Voltar ao menu principal'
-    
   ];
   const links = ['/estatutos/estatuto-crianca-adolescente/EstatutoCriancaAdolescente', '/estatutos/estatuto-idoso/EstatutoIdoso', '/estatutos/estatuto-oab/EstatutoOAB', '/estatutos/estatuto-pessoa-deficiencia/EstatutoPessoaDeficiencia', '../'];
   const [selectedIndex, setSelectedIndex] = useState(0);
