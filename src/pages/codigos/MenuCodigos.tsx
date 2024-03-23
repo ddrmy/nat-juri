@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // src/pages/codigos/CodigosMenu.tsx
 import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
